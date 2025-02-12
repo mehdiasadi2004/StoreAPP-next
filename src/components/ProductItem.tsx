@@ -1,7 +1,7 @@
 import React from 'react'
 
-interface IProudctItemProps {
-  id: number;
+export interface IProudctItemProps {
+  id: string;
   image: string;
   title: string;
   desc: string;
