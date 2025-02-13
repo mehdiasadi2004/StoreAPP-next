@@ -22,17 +22,27 @@ function Navbar() {
   return (
     <nav className="shadow p-4">
       <Container>
-        {navLinks.map((item) => (
+        <div className="flex justify-between">
+          <div>
+            {navLinks.map((item) => (
+              <Link
+                key={item.href}
+                className={`mr-4 ${
+                  pathmname === item.href ? "text-sky-500" : null
+                }`}
+                href={item.href}
+              >
+                {item.title}
+              </Link>
+            ))}
+          </div>
           <Link
-            key={item.href}
-            className={`mr-4 ${
-              pathmname === item.href ? "text-sky-500" : null
-            }`}
-            href={item.href}
+            className={`mr-4 ${pathmname === "/cart" ? "text-sky-500" : null}`}
+            href="/cart"
           >
-            {item.title}
+            basket
           </Link>
-        ))}
+        </div>
       </Container>
     </nav>
   );
