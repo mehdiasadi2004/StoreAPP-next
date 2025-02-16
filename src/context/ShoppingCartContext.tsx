@@ -3,7 +3,11 @@ import React, { createContext, useContext, useState } from "react";
 
 type TShoppingCartContext = {
   cartItem: TCartItem[];
-  handleIncreseProductCount:(id:number)=> void
+  handleIncreseProductCount: (id: number) => void;
+  getProductCount: (id: number) => number;
+  cartTotalCount: number;
+  handleDecreaseProductCount: (id: number) => void;
+  handleRemoveProduct:(id:number)=>void
 };
 
 
@@ -27,6 +31,17 @@ export function ShoppingCartContextProvider({
   children,
 }: TShoppingCartContextProviderProps) {
 const [cartItem, setCartItem] = useState<TCartItem[]>([])
+
+
+const cartTotalCount = cartItem.reduce((totalCount,item)=>{
+  return  totalCount + item.count
+},0)
+
+const getProductCount =(id:number)=>{
+  return cartItem.find(item => item.id == id)?.count || 0
+}
+
+
 
 const handleIncreseProductCount =(id:number)=>{
     setCartItem(currentItem => {
@@ -52,12 +67,50 @@ const handleIncreseProductCount =(id:number)=>{
 
     })
 }
+const handleDecreaseProductCount =(id:number)=>{
+    setCartItem(currentItem => {
+        let isLastOne = currentItem.find(item => item.id == id)?.count == 1
+
+        if (isLastOne) {
+          return currentItem.filter(item => item.id != id);
+        } else {
+          return currentItem.map((item) => {
+            if (item.id == id) {
+              return {
+                ...item,
+                count: item.count - 1,
+              };
+            } else {
+              return item;
+            }
+          });
+        }
+
+    })
+}
+
+const handleRemoveProduct =(id:number)=>{
+  setCartItem((currentItem) =>{
+    return currentItem.filter(item=> item.id != id);
+
+  });
+}
+
+
+
 
 
     
   return (
     <ShoppingCartContext.Provider
-      value={{ cartItem, handleIncreseProductCount }}
+      value={{
+        cartItem,
+        handleIncreseProductCount,
+        cartTotalCount,
+        getProductCount,
+        handleDecreaseProductCount,
+        handleRemoveProduct,
+      }}
     >
       {children}
     </ShoppingCartContext.Provider>

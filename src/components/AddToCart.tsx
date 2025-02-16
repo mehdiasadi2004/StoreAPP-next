@@ -7,19 +7,39 @@ interface IAddToCartProps {
 }
 
 function AddToCart({id}:IAddToCartProps) {
-    const { cartItem, handleIncreseProductCount } = useShppingCartContext();
+    const {
+      cartItem,
+      handleIncreseProductCount,
+      handleDecreaseProductCount,
+      getProductCount,
+      handleRemoveProduct,
+    } = useShppingCartContext();
 
     
   return (
-    <div className="mt-2">
+    <div>
+      <div className="mt-2">
+        <button
+          onClick={() => handleIncreseProductCount(parseInt(id))}
+          className="px-4 py-2 bg-sky-500 rounded text-white"
+        >
+          +
+        </button>
+        <span className="mx-4">{getProductCount(parseInt(id))}</span>
+        <button
+          onClick={() => handleDecreaseProductCount(parseInt(id))}
+          className="px-4 py-2 bg-sky-500 rounded text-white"
+        >
+          -
+        </button>
+      </div>
       <button
-        onClick={() => handleIncreseProductCount(parseInt(id))}
-        className="px-4 py-2 bg-sky-500 rounded text-white"
+        onClick={() => handleRemoveProduct(parseInt(id))}
+        className="bg-red-500 text-white rounded px-7 py-2 mt2
+      "
       >
-        +
+        delete
       </button>
-      <span className="mx-4">3</span>
-      <button className="px-4 py-2 bg-sky-500 rounded text-white">-</button>
     </div>
   );
 }
