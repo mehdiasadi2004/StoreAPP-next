@@ -8,16 +8,20 @@ import { useShppingCartContext } from '@/context/ShoppingCartContext';
 function Navbar() {
     const pathmname=usePathname()
 
-    const navLinks =[
-        {
-            href:"/",
-            title:"Home"
-        },
-        {
-            href:"/store",
-            title:"Store"
-        }
-    ]
+    const navLinks = [
+      {
+        href: "/",
+        title: "Home",
+      },
+      {
+        href: "/store",
+        title: "Store",
+      },
+      {
+        href: "/dashboard",
+        title: "Dashboard",
+      },
+    ];
 
 const { cartTotalCount } = useShppingCartContext();
 

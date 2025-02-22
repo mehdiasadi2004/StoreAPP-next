@@ -1,5 +1,5 @@
 "use client"
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 
 type TShoppingCartContext = {
   cartItem: TCartItem[];
@@ -89,6 +89,8 @@ const handleDecreaseProductCount =(id:number)=>{
     })
 }
 
+
+
 const handleRemoveProduct =(id:number)=>{
   setCartItem((currentItem) =>{
     return currentItem.filter(item=> item.id != id);
@@ -96,7 +98,17 @@ const handleRemoveProduct =(id:number)=>{
   });
 }
 
+useEffect(()=>{
+  const storedCartItem = localStorage.getItem("cartItem")
+  if (storedCartItem) {
+    setCartItem(JSON.parse(storedCartItem));
+  }
+},[])
 
+
+useEffect(()=>{
+  localStorage.setItem("cartItem",JSON.stringify(cartItem))
+},[cartItem])
 
 
 

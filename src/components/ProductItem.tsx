@@ -8,6 +8,15 @@ export interface IProudctItemProps {
   price: string;
 }
 
+export interface IProductPropsList {
+  first: number|null;
+  last: number|null;
+  items: number | null;
+  next: number|null;
+  prev: number|null;
+  pages: number;
+  data: IProudctItemProps[];
+}
 
 function ProductItem({ image, price, title }: IProudctItemProps) {
   return (
