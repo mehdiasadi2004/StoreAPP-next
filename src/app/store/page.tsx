@@ -29,6 +29,7 @@ async function store({ searchParams }: IProductProps) {
     <Container>
       <h1 className="py-4">store</h1>
 
+
       <Search/>
 
 

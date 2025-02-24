@@ -1,5 +1,6 @@
 "use client"
 import { useShppingCartContext } from '@/context/ShoppingCartContext';
+import { Button } from '@heroui/react';
 import React, { useContext } from 'react'
 
 interface IAddToCartProps {
@@ -19,27 +20,27 @@ function AddToCart({id}:IAddToCartProps) {
   return (
     <div>
       <div className="mt-2">
-        <button
+        <Button
           onClick={() => handleIncreseProductCount(parseInt(id))}
-          className="px-4 py-2 bg-sky-500 rounded text-white"
+         
+          color='primary'
         >
           +
-        </button>
+        </Button>
         <span className="mx-4">{getProductCount(parseInt(id))}</span>
-        <button
+        <Button
           onClick={() => handleDecreaseProductCount(parseInt(id))}
-          className="px-4 py-2 bg-sky-500 rounded text-white"
+          color='danger'
         >
           -
-        </button>
+        </Button>
       </div>
-      <button
+      <Button
         onClick={() => handleRemoveProduct(parseInt(id))}
-        className="bg-red-500 text-white rounded px-7 py-2 mt2
-      "
+      color='danger'
       >
         delete
-      </button>
+      </Button>
     </div>
   );
 }

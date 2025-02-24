@@ -1,4 +1,5 @@
 "use client"
+import { HeroUIProvider } from "@heroui/react";
 import React, { createContext, useContext, useEffect, useState } from "react";
 
 type TShoppingCartContext = {
@@ -124,7 +125,8 @@ useEffect(()=>{
         handleRemoveProduct,
       }}
     >
-      {children}
+      
+        {children}
     </ShoppingCartContext.Provider>
   );
 }
